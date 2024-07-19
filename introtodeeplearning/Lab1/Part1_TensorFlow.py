@@ -196,3 +196,55 @@ print('Tensor resultado del calculo y = w . x + b.')
 print(y)
 # print('\n')
 # print(y.numpy())
+
+print('\n \n')
+print ('----------Defining a network Layer -------------------')
+print('\n')
+
+### Defining a network Layer ###
+
+# n_output_nodes: number of output nodes
+# input_shape: shape of the input
+# x: input to the layer
+
+class OurDenseLayer(tf.keras.layers.Layer):
+    def __init__(self, units=32):
+        super().__init__()
+        self.units = units
+
+    # Create the state of the layer (weights)
+    
+    def build(self, input_shape):
+        self.W = self.add_weight(
+            shape=(input_shape[-1], self.units),
+            initializer="glorot_uniform",
+            trainable=True,
+            name="weight",
+        )
+        self.b = self.add_weight(
+            shape=(self.units,),
+            initializer="zeros",
+            trainable=True,
+            name="bias",
+        )
+
+    # Defines the computation
+    def call(self, inputs):
+        #TOD0: define the operation for z (hint: use tf.matmul that Multiplies matrix a by matrix b, producing a * b.) 
+        z = tf.matmul(inputs, self.W) + self.b
+        #TOD0: define the operation for out (hint: use tf.sigmoid)
+        return tf.sigmoid(z)
+
+# Since layer parameters are initialized randomly, we will set a random seed for reproducibility
+tf.keras.utils.set_random_seed(1)
+# Instantiates the layer.
+layer = OurDenseLayer(3)
+layer.build((1,2))
+# y1 = layer(tf.constant(((1, 2.)), shape=(1,2)))
+x_input = tf.constant(((1, 2.)), shape=(1,2))
+y1 = layer.call(x_input)
+
+# test the output result of computation y1 = Sigma(W . x + b).!
+print('Tensor resultado del calculo y = Sigma(W . x + b).')
+print(y1.numpy())
+# mdl.lab1.test_custom_dense_layer_output(y1) Reviasar funcionamiento de código.
