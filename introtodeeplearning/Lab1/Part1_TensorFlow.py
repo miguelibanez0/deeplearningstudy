@@ -248,3 +248,27 @@ y1 = layer.call(x_input)
 print('Tensor resultado del calculo y = Sigma(W . x + b).')
 print(y1.numpy())
 # mdl.lab1.test_custom_dense_layer_output(y1) Reviasar funcionamiento de código.
+
+
+
+print('\n \n')
+print ('----------Defining a neural network using the Sequential API -------------------')
+print('\n')
+
+# Import relevant packages
+
+import keras
+from keras import layers
+from keras import ops
+
+# Define the number of outputs
+n_output_nodes = 3
+
+# First define the model
+model = keras.Sequential()
+
+
+# '''TOD0: Define a dense (fully connected) layer to compute z'''
+# Remember: dense layers are defined by the parameters W and b!
+# You can read more about the initialization of W and b in the TF documentation :)
+# https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dense?version=stable
